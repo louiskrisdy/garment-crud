@@ -62,8 +62,6 @@ export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    // this.itemService.getItemList().subscribe((data: any) => this.itemList = data);
-    // console.log(this.itemList);
     return this.getItemList();
 
   }
@@ -76,7 +74,7 @@ export class HomeComponent implements AfterViewInit {
     if(this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-    
+
   }
 
   // For adding item(s), Executed when the specific button is clicked
@@ -102,7 +100,6 @@ export class HomeComponent implements AfterViewInit {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-        // console.log(res);
       },
       error: (err) => {
         console.log(err);

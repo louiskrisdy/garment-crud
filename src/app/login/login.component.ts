@@ -41,8 +41,6 @@ export class LoginComponent {
       });
     }
 
-    // authService = inject(AuthService);
-
     changeLanguage(event: Event) {
       let locale = (event.target as HTMLInputElement).value;
       this.translateService.use(locale);
