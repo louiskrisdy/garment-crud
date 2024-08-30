@@ -72,21 +72,7 @@ export class LoginComponent {
     goToHome() {
       this.router.navigate(['/home'], {relativeTo: this.route});
     }
-    
-    // Temporary
-    // preventBackButton() {
-
-    //   try {
-    //     history.pushState(null, '', location.href);
-    //     this.locationStrategy.onPopState(() => {
-    //       history.pushState(null, '', location.href);
-    //     });
-    //   } catch(e) {
-    //     console.log(e);
-    //   }
-
-    // }
-
+  
     getErrorMessage(con: number) {
 
       switch(con) {
