@@ -1,0 +1,57 @@
+<mat-toolbar class="mb-3" color="primary">
+    <span>Garment Inventory Management</span>
+    <span class="spacer"></span>
+    
+    <!-- Localization -->
+    <select (change)="changeLanguage($event)">
+        <option value="en-US">English</option>
+        <option value="id">Bahasa Indonesia</option>
+    </select>
+
+  </mat-toolbar>
+
+<div class="container">
+
+    <!-- Form Header -->
+    <h2 class="login-header" i18n>{{ 'LOGIN' | translate }}</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <!-- Username input -->
+        <div class="row">
+
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput type="text" formControlName="username" placeholder="i.e username@user.name">
+            </mat-form-field>
+
+            <!-- Conditional for username input error details -->
+            @if (loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)) {
+                <mat-error class="error-detail">{{ getErrorMessage(1) }}</mat-error>
+            }
+
+        </div>
+
+        <!-- Password input -->
+        <div class="row mt-3">
+
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password">
+            </mat-form-field>
+
+            <!-- Conditional for password input error details -->
+            @if (loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)) {
+                <mat-error class="error-detail">{{ getErrorMessage(2) }}</mat-error>
+            }
+
+        </div>
+
+        <!-- Login button -->
+        <div class="login-button">
+            <button [disabled]="!loginForm.valid" class="action-btn" mat-raised-button color="accent" type="submit">{{ 'LOGIN' | translate }}</button>
+        </div>
+        
+    </form>
+</div>
+<router-outlet></router-outlet>

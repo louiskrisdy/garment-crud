@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="content">
+
+        <!-- Confirm Text -->
+        <div class="text">
+            <span>Are you sure you want to delete this item with id: {{ id }}?</span>
+        </div>
+
+        <!-- Confirm Delete Button (Yes/Cancel) -->
+        <div mat-dialog-actions class="action-btns">
+            
+            <!-- Yes Button -->
+            <button style="margin: 10px;" mat-raised-button color="warn" type="submit" (click)="confirmDelete(id)">Yes</button>
+
+            <!-- Cancel Button -->
+            <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+
+        </div>
+
+    </div>
+</div>

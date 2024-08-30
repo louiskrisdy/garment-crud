@@ -1,0 +1,87 @@
+
+<mat-toolbar color="primary">
+    <span>Garment Inventory Management</span>
+    <span class="spacer"></span>
+    <button mat-raised-button color="accent" (click)="logout()">logout</button>
+  </mat-toolbar>
+  
+  <!-- Add item button -->
+  <div class="floating">
+    <button class="floating" mat-raised-button color="accent" (click)="openAddEditItemDialog()">+</button>
+  </div>
+  
+   <div class="main-body">
+
+    <!-- Search Bar -->
+    <div class="d-flex justify-content-around pt-3">
+        <mat-form-field aria-haspopup="true">
+            <mat-label i18n>{{ 'Search items' | translate }}</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search item" #input>
+        </mat-form-field>
+    </div>
+
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Column for ID -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+  
+        <!-- Column for item name -->
+        <ng-container matColumnDef="itemName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header i18n> {{ 'Item Name' | translate }} </th>
+          <td mat-cell *matCellDef="let row"> {{row.itemName}} </td>
+        </ng-container>
+  
+        <!-- Column for category -->
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header i18n> {{ 'Category' | translate }} </th>
+          <td mat-cell *matCellDef="let row"> {{row.category}} </td>
+        </ng-container>
+  
+        <!-- Column for number of stock -->
+        <ng-container matColumnDef="stockNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header i18n> {{ 'Stock' | translate }} </th>
+          <td mat-cell *matCellDef="let row"> {{row.stockNumber}} </td>
+        </ng-container>
+  
+        <!-- Column for action button (Edit and Delete) -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+          <td mat-cell *matCellDef="let row">
+
+            <!-- Edit Button -->
+            <span (click)="openEditForm(row)" class="action-icon" style="margin-right: 5px;">
+              <mat-icon color="primary">edit</mat-icon>
+            </span>
+
+            <!-- Delete Button -->
+            <span (click)="deleteItem(row.id)" class="action-icon" style="margin-right: 5px;">
+              <mat-icon color="warin">delete</mat-icon>
+            </span>
+
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- If there is no data matching the filter -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
+        </tr>
+
+      </table>
+
+      <!-- Paginator -->
+      <mat-paginator class="mt-3" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of ..."></mat-paginator>
+      
+    </div>
+   </div>
+  
+   <!-- Footer -->
+  <div class="footer">
+    <p>2024</p>
+  </div>

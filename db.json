@@ -1,0 +1,69 @@
+{
+  "items": [
+    {
+      "id": "CL001",
+      "itemName": "White T-shirt",
+      "category": "Clothes",
+      "stockNumber": "180"
+    },
+    {
+      "id": "CL002",
+      "itemName": "Black T-shirt",
+      "category": "Clothes",
+      "stockNumber": "150"
+    },
+    {
+      "id": "JK001",
+      "itemName": "Green Jacket",
+      "category": "Jackets",
+      "stockNumber": "50"
+    },
+    {
+      "id": "SP001",
+      "itemName": "White Short Pants",
+      "category": "Short Pants",
+      "stockNumber": "120"
+    },
+    {
+      "id": "SP002",
+      "itemName": "Black Short Pants",
+      "category": "Short Pants",
+      "stockNumber": "220"
+    },
+    {
+      "id": "LP001",
+      "itemName": "Black Long Pants",
+      "category": "Long Pants",
+      "stockNumber": "70"
+    },
+    {
+      "id": "CL004",
+      "itemName": "Grey T-shirt",
+      "category": "Clothes",
+      "stockNumber": "100"
+    },
+    {
+      "id": "CL123",
+      "itemName": "123awd",
+      "category": "Clothes",
+      "stockNumber": "100"
+    }
+  ],
+  "login": [
+    {
+      "id": "dummyid1",
+      "username": "dummy1",
+      "password": "dummy1passw"
+    },
+    {
+      "id": "c8cb",
+      "username": "awd@awd.awd",
+      "password": "12345awd"
+    },
+    {
+      "id": "bd01",
+      "username": "awd@awd.awd",
+      "password": "awd12345"
+    }
+  ]
+}

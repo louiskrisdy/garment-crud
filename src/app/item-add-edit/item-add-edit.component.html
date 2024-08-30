@@ -1,0 +1,102 @@
+<div class="container">
+
+    <!-- Header -->
+    <div mat-dialog-title class="text-center">
+        <h1>{{ data ? 'Edit' : 'Add' }} Form</h1>
+    </div>
+    
+    <!-- Form -->
+    <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    
+        <div mat-dialog-content class="content">
+
+            <!-- Item Code -->
+            <div class="row">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{ 'Item Code' | translate }}</mat-label>
+
+                    <!-- Conditional for the item code field, will transform to readonly for editing -->
+                    @if ( data ) {
+                        <input readonly matInput type="text" placeholder="i.e CL001" formControlName="id">
+                    }
+                    @else {
+                        <input matInput type="text" placeholder="i.e CL001" formControlName="id">
+                    }
+
+                </mat-form-field>
+
+                <!-- Conditional for id input error details -->
+                @if (!data && (itemForm.controls['id'].dirty || itemForm.controls['id'].touched) && itemForm.controls['id'].invalid && itemForm.controls['id'].errors?.['uniqueId']) {
+                    <mat-error class="error-detail">Item code has been taken (Must be unique)</mat-error>
+                }
+                @else if(!data && (itemForm.controls['id'].dirty || itemForm.controls['id'].touched) && itemForm.controls['id'].invalid && itemForm.controls['id'].errors?.['required']) {
+                    <mat-error class="error-detail">This field cannot be empty</mat-error>
+                }
+
+            </div>
+    
+            <!-- Form field for item name -->
+            <div class="row">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{ 'Item Name' | translate }}</mat-label>
+                    <input matInput type="text" placeholder="i.e Blue Jeans" formControlName="itemName" required>
+                </mat-form-field>
+
+                <!-- Conditional for item name input error details -->
+                @if (itemForm.controls['itemName'].invalid && (itemForm.controls['itemName'].dirty || itemForm.controls['itemName'].touched)) {
+                    <mat-error class="error-detail">{{ getErrorMessage(1) }}</mat-error>
+                }
+
+            </div>
+    
+            <!-- Form field for category -->
+            <div class="row">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{ 'Category' | translate }}</mat-label>
+                    <mat-select formControlName="category">
+                        @for (val of categories; track $index) {
+                            <mat-option [value]="val">{{ val }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+
+                <!-- Conditional for category input error details -->
+                @if (itemForm.controls['category'].invalid && (itemForm.controls['category'].dirty || itemForm.controls['category'].touched)) {
+                    <mat-error class="error-detail">{{ getErrorMessage(2) }}</mat-error>
+                }
+
+            </div>
+    
+            <!-- Form field for inputting number of stock -->
+            <div class="row">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{ 'Stock' | translate }}</mat-label>
+                    <input matInput type="text" placeholder="i.e 123" formControlName="stockNumber">
+                </mat-form-field>
+
+                <!-- Conditional for stock number input error details -->
+                @if (itemForm.controls['stockNumber'].invalid && (itemForm.controls['stockNumber'].dirty || itemForm.controls['stockNumber'].touched)) {
+                    <mat-error class="error-detail">{{ getErrorMessage(3) }}</mat-error>
+                }
+
+            </div>
+    
+        </div>
+    
+        <!-- Action button (Update/save and Cancel) -->
+        <div mat-dialog-actions class="action-btns">
+
+            <!-- Update/Save button -->
+            <button style="margin: 10px;" mat-raised-button color="accent" type="submit">{{data ? 'Update': 'Save'}}</button>
+
+            <!-- Cancel button -->
+            <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false">Cancel</button>
+
+        </div>
+    
+    </form>
+</div>

@@ -1,0 +1,22 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+.action-btn {
+    background-color: green !important;
+}
+
+.error-detail {
+    margin-top: -1.5rem;
+}
+
+.login-header {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+}

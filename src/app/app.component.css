@@ -1,0 +1,30 @@
+.action-icon {
+    cursor: pointer;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.floating {
+    font-size: x-large;
+    position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#0C9 !important;
+	/* color:#FFF; */
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+ }
+
+ .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: black;
+    text-align: center;
+  }

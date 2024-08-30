@@ -1,0 +1,21 @@
+.content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.text {
+    /* font-weight: bolder; */
+    font-size: larger;
+}
+
+.action-btns {
+    display: flex;
+    justify-content: center;
+}
+.action-btns button {
+    padding: 20px;
+    font-weight: bolder;
+}
+
