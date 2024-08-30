@@ -16,7 +16,7 @@
     <div class="d-flex justify-content-around pt-3">
         <mat-form-field aria-haspopup="true">
             <mat-label i18n>{{ 'Search items' | translate }}</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Search item" #input>
+            <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'Search items' | translate }}" #input>
         </mat-form-field>
     </div>
 
