@@ -25,7 +25,6 @@ export class ItemDeleteComponent {
     this.itemService.deleteItem(id).subscribe({
       next: (res) => {
         this.dialgoRef.close(true);
-        // location.reload();
         this.openSuccess();
         console.log('success');
       },

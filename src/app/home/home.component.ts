@@ -80,8 +80,7 @@ export class HomeComponent implements AfterViewInit {
   // For adding item(s), Executed when the specific button is clicked
   openAddEditItemDialog() {
 
-    //  item-add-edit.component.html will be displayed
-    const dialogRef = this.dialog.open(ItemAddEditComponent);
+    const dialogRef = this.dialog.open(ItemAddEditComponent); //  item-add-edit.component.html will be displayed
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         if(val) {

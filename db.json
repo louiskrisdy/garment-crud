@@ -41,12 +41,6 @@
       "itemName": "Grey T-shirt",
       "category": "Clothes",
       "stockNumber": "100"
-    },
-    {
-      "id": "CL123",
-      "itemName": "123awd",
-      "category": "Clothes",
-      "stockNumber": "100"
     }
   ],
   "login": [
