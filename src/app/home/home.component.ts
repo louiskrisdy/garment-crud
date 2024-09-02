@@ -57,6 +57,8 @@ export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
+    this.paginator._intl.itemsPerPageLabel = this.translateService.instant('paginator label');
+    
     return this.getItemList();
 
   }

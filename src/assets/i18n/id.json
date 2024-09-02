@@ -5,7 +5,9 @@
     "Item Name": "Nama Barang",
     "Category": "Kategori",
     "Stock": "Stok",
+    "Action": "Aksi",
     "Search items": "Cari barang",
     "No data match": "Tidak ada data yang sesuai dengan filter",
-    "Confirm delete text": "Apakah anda yakin ingin menghapus barang dengan id:"
+    "Confirm delete text": "Apakah anda yakin ingin menghapus barang dengan id:",
+    "paginator label": "Jumlah barang per halaman:"
 }

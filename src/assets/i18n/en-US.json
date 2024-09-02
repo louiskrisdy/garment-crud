@@ -5,7 +5,9 @@
     "Item Name": "Item Name",
     "Category": "Category",
     "Stock": "Stock",
+    "Action": "Action",
     "Search items": "Search items",
     "No data match": "No data matching the filter",
-    "Confirm delete text": "Are you sure you want to delete this item with id:"
+    "Confirm delete text": "Are you sure you want to delete this item with id:",
+    "paginator label": "Items per page:"
 }
