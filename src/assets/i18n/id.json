@@ -9,5 +9,8 @@
     "Search items": "Cari barang",
     "No data match": "Tidak ada data yang sesuai dengan filter",
     "Confirm delete text": "Apakah anda yakin ingin menghapus barang dengan id:",
-    "paginator label": "Jumlah barang per halaman:"
+    "paginator label": "Jumlah barang per halaman:",
+    "empty field": "Input tidak boleh kosong",
+    "invalid username": "Username tidak valid",
+    "invalid length password": "Tidak valid (minimal 8 karakter)"
 }

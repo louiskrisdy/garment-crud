@@ -75,14 +75,13 @@ export class LoginComponent {
 
       switch(con) {
         case 1:
-          return this.loginForm.controls['username'].hasError('required') ? 'This field cannot be empty'
-          : this.loginForm.controls['username'].hasError('pattern') ? 'Invalid username'
-          : this.loginForm.controls['username'].hasError('email') ? 'Invalid username'
+          return this.loginForm.controls['username'].hasError('required') ? this.translateService.instant('empty field')
+          : this.loginForm.controls['username'].hasError('pattern') || this.loginForm.controls['username'].hasError('email') ? this.translateService.instant('invalid username')
           : '';
 
         case 2:
-          return this.loginForm.controls['password'].hasError('required') ? 'This field cannot be empty'
-          : this.loginForm.controls['password'].hasError('minlength') ? 'Invalid (min. length: 8)'
+          return this.loginForm.controls['password'].hasError('required') ? this.translateService.instant('empty field')
+          : this.loginForm.controls['password'].hasError('minlength') ? this.translateService.instant('invalid length password')
           : '';
       }
 
