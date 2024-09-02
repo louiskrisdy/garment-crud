@@ -15,7 +15,7 @@
     <!-- Search Bar -->
     <div class="d-flex justify-content-around pt-3">
         <mat-form-field aria-haspopup="true">
-            <mat-label i18n>{{ 'Search items' | translate }}</mat-label>
+            <mat-label>{{ 'Search items' | translate }}</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'Search items' | translate }}" #input>
         </mat-form-field>
     </div>
@@ -31,19 +31,19 @@
   
         <!-- Column for item name -->
         <ng-container matColumnDef="itemName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header i18n> {{ 'Item Name' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Item Name' | translate }} </th>
           <td mat-cell *matCellDef="let row"> {{row.itemName}} </td>
         </ng-container>
   
         <!-- Column for category -->
         <ng-container matColumnDef="category">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header i18n> {{ 'Category' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Category' | translate }} </th>
           <td mat-cell *matCellDef="let row"> {{row.category}} </td>
         </ng-container>
   
         <!-- Column for number of stock -->
         <ng-container matColumnDef="stockNumber">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header i18n> {{ 'Stock' | translate }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Stock' | translate }} </th>
           <td mat-cell *matCellDef="let row"> {{row.stockNumber}} </td>
         </ng-container>
   
