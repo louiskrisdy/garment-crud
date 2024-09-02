@@ -62,12 +62,7 @@ export class ItemAddEditComponent implements OnInit{
 
   }
 
-  // changeLanguage(event: Event) {
-  //   let locale = (event.target as HTMLInputElement).value;
-  //   // console.log(locale);
-  //   this.translateService.use(locale);
-  // }
-
+  
   getErrorMessage(con: number) {
 
     switch(con){

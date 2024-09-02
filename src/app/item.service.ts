@@ -33,21 +33,4 @@ export class ItemService {
     return this.http.delete(`${this.baseUrl}items/${id}`);
   }
 
-    // temp: any;
-  // getID(): string {
-  //   this.itemService.getItemList().subscribe({
-  //     next: (res) => {
-  //       console.log(res);
-  //       this.temp = Object.keys(res).length + 1;
-  //       console.log(this.temp.toString());
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     }
-  //   });
-  //   console.log(this.temp.toString);
-  //   return this.temp;
-  // }
-
-
 }
