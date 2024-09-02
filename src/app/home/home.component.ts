@@ -55,11 +55,6 @@ export class HomeComponent implements AfterViewInit {
   
   authService = inject(AuthService);
 
-  // public itemList: any;
-  // ngOnInit(): void {
-  //     return this.getItemList();
-  // }
-
   ngAfterViewInit(): void {
 
     return this.getItemList();
