@@ -4,11 +4,12 @@ import { ItemService } from '../item.service';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgToastModule, NgToastService } from 'ng-angular-popup';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-item-delete',
   standalone: true,
-  imports: [NgbModule, MatDialogModule, MatButtonModule, NgToastModule],
+  imports: [NgbModule, MatDialogModule, MatButtonModule, NgToastModule, TranslateModule],
   templateUrl: './item-delete.component.html',
   styleUrl: './item-delete.component.css'
 })

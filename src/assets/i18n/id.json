@@ -1,8 +1,11 @@
 {
     "LOGIN": "Masuk",
+    "LOGOUT": "Keluar",
     "Item Code": "Kode Barang",
     "Item Name": "Nama Barang",
     "Category": "Kategori",
     "Stock": "Stok",
-    "Search items": "Cari barang"
+    "Search items": "Cari barang",
+    "No data match": "Tidak ada data yang sesuai dengan filter",
+    "Confirm delete text": "Apakah anda yakin ingin menghapus barang dengan id:"
 }

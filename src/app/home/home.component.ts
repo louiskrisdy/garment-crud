@@ -135,13 +135,14 @@ export class HomeComponent implements AfterViewInit {
     
   }
 
-  goToLogin() {
-    this.translateService.use('en-US');
-    this.router.navigate(['login']);
-  }
+  // goToLogin() {
+  //   this.translateService.use('en-US');
+  //   this.router.navigate(['login']);
+  // }
 
   public logout() {
     this.authService.logout();
+    this.translateService.use('en-US');
     this.router.navigate(['login']);
   }
 

@@ -1,8 +1,11 @@
 {
     "LOGIN": "Login",
+    "LOGOUT": "Logout",
     "Item Code": "Item Code",
     "Item Name": "Item Name",
     "Category": "Category",
     "Stock": "Stock",
-    "Search items": "Search items"
+    "Search items": "Search items",
+    "No data match": "No data matching the filter",
+    "Confirm delete text": "Are you sure you want to delete this item with id:"
 }
