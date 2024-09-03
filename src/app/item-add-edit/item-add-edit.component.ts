@@ -68,13 +68,16 @@ export class ItemAddEditComponent implements OnInit{
 
     switch(con){
     case 1: 
-      return this.itemForm.controls['itemName'].hasError('required') ? this.translateService.instant('empty field') : this.itemForm.controls['itemName'].hasError('minlength') ? this.translateService.instant('invalid length itemName') : '';
+      return this.itemForm.controls['itemName'].hasError('required') ? this.translateService.instant('empty field') : this.itemForm.controls['itemName'].hasError('minlength') ? this.translateService.instant('invalid length itemName') 
+      : '';
       
     case 2:
-      return this.itemForm.controls['category'].hasError('required') ? this.translateService.instant('empty field') : '';
+      return this.itemForm.controls['category'].hasError('required') ? this.translateService.instant('empty field') 
+      : '';
     
     case 3: 
-      return this.itemForm.controls['stockNumber'].hasError('required') ? this.translateService.instant('empty field') : this.itemForm.controls['stockNumber'].hasError('pattern') ? this.translateService.instant('invalid input stock') : '';
+      return this.itemForm.controls['stockNumber'].hasError('required') ? this.translateService.instant('empty field') : this.itemForm.controls['stockNumber'].hasError('pattern') ? this.translateService.instant('invalid input stock') 
+      : '';
     }
     return;
   }
