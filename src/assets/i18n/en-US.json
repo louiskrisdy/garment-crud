@@ -12,5 +12,7 @@
     "paginator label": "Items per page:",
     "empty field": "This field cannot be empty",
     "invalid username": "Invalid username",
-    "invalid length password": "Invalid (min. length: 8)"
+    "invalid length password": "Invalid (min. length: 8)",
+    "invalid length itemName": "Invalid (min. length: 5)",
+    "invalid input stock": "Invalid (input number only)"
 }

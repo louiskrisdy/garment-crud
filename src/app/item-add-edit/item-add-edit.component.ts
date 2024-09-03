@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { NgToastModule, NgToastService } from 'ng-angular-popup';
 import { RouterOutlet } from '@angular/router';
 import { UniqueIdValidatorDirective } from '../unique-id-validator.directive';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -39,6 +39,7 @@ export class ItemAddEditComponent implements OnInit{
     private dialogRef: MatDialogRef<ItemAddEditComponent>,
     private formBuilder: FormBuilder,
     private toast: NgToastService,
+    private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
 
@@ -62,20 +63,18 @@ export class ItemAddEditComponent implements OnInit{
 
   }
 
-  
+
   getErrorMessage(con: number) {
 
     switch(con){
     case 1: 
-      return this.itemForm.controls['itemName'].hasError('required') ? 'This field cannot be empty' : this.itemForm.controls['itemName'].hasError('minlength') ? 'Invalid (min. length: 5)' : '';
+      return this.itemForm.controls['itemName'].hasError('required') ? this.translateService.instant('empty field') : this.itemForm.controls['itemName'].hasError('minlength') ? this.translateService.instant('invalid length itemName') : '';
       
     case 2:
-      return this.itemForm.controls['category'].hasError('required') ? 'This field cannot be empty' : '';
+      return this.itemForm.controls['category'].hasError('required') ? this.translateService.instant('empty field') : '';
     
     case 3: 
-      return this.itemForm.controls['stockNumber'].hasError('required') ? 'This field cannot be empty' : this.itemForm.controls['stockNumber'].hasError('pattern') ? 'Invalid (input number only)' : '';
-
-
+      return this.itemForm.controls['stockNumber'].hasError('required') ? this.translateService.instant('empty field') : this.itemForm.controls['stockNumber'].hasError('pattern') ? this.translateService.instant('invalid input stock') : '';
     }
     return;
   }

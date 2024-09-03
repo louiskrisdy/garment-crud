@@ -12,5 +12,7 @@
     "paginator label": "Jumlah barang per halaman:",
     "empty field": "Input tidak boleh kosong",
     "invalid username": "Username tidak valid",
-    "invalid length password": "Tidak valid (minimal 8 karakter)"
+    "invalid length password": "Tidak valid (min. 8 karakter)",
+    "invalid length itemName": "Tidak valid (min. 5 karakter)",
+    "invalid input stock": "Tidak valid (hanya input angka)"
 }
