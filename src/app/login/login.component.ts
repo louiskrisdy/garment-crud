@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatToolbar } from '@angular/material/toolbar';
@@ -12,11 +14,12 @@ import { RouterOutlet } from '@angular/router';
 import { NgToastModule, NgToastService } from 'ng-angular-popup';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../auth/auth.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NgbModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule, MatToolbar, RouterOutlet, NgToastModule, TranslateModule],
+  imports: [NgbModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule, MatToolbar, RouterOutlet, NgToastModule, TranslateModule, RouterLink, NgClass, MatIconModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -33,7 +36,6 @@ export class LoginComponent {
     private toast: NgToastService,
     private translateService: TranslateService,
     private authService: AuthService
-    // @Inject (MAT_DIALOG_DATA) public data: any
   ) {
       this.loginForm = this.formBuilder.group({
         username: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.email]],
@@ -50,15 +52,20 @@ export class LoginComponent {
     onSubmit() {
 
       if(this.loginForm.valid) {
-        this.authService.login(this.loginForm.value)
-        .subscribe((data: any) => {
-          if(this.authService.isLoggedIn()) {
+    
+        this.authService.login(this.loginForm.value);
+        // wait for the method above to finish
+        setTimeout(() => {
+          if(localStorage.getItem('authUser') !== null) {
             this.openSuccess();
             setTimeout(() => {
               this.goToHome();
             }, 1000);
           }
-        })
+          else {
+            this.openUserNotFound();
+          }
+        },10);
       }
       else {
         this.openError();
@@ -68,6 +75,7 @@ export class LoginComponent {
 
     // Navigate to home
     goToHome() {
+      this.loginForm.reset();
       this.router.navigate(['/home'], {relativeTo: this.route});
     }
   
@@ -88,11 +96,17 @@ export class LoginComponent {
       return;
     }
 
+    hide = true;
+
     openSuccess() {
       this.toast.success('Logged in successfully', 'Login Success', 2000);
     }
 
     openError() {
       this.toast.danger('Something went wrong', 'Error', 4000);
+    }
+
+    openUserNotFound() {
+      this.toast.danger('User Not Found', '', 2000);
     }
 }

@@ -40,16 +40,6 @@ export class HomeComponent implements AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  // @ViewChild(MatSort) set matSort(sort: MatSort) {
-  //   this.dataSource.sort = sort;
-  // }
-
-//   @ViewChild(MatSort) set matSort(sort: MatSort) {
-//     if (!this.dataSource.sort) {
-//         this.dataSource.sort = sort;
-//     }
-// }
   
   constructor(private dialog: MatDialog, private itemService: ItemService, private router: Router, private toast: NgToastService, private translateService: TranslateService){}
   

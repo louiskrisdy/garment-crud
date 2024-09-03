@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { inject } from '@angular/core';
-import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +13,17 @@ export class AuthService {
   baseUrl = import.meta.env.NG_APP_PUBLIC_DBURL;
 
   login(data: any) {
-    return this.httpClient.post(`${this.baseUrl}login`, data)
-    .pipe(tap((result) => {
-      localStorage.setItem('authUser', JSON.stringify(result));
-    }));
+    this.httpClient.get<any>(`${this.baseUrl}login`)
+    .subscribe(res => {
+      const user = res.find((curr: any) => {
+        return curr.username === data.username && curr.password === data.password
+      });
+
+      if(user) {
+        localStorage.setItem('authUser', JSON.stringify(user));
+      }
+    
+    })
   }
 
   logout() {
@@ -25,8 +31,6 @@ export class AuthService {
   }
 
   isLoggedIn() {
-   
     return localStorage.getItem('authUser') !== null;
-    
   }
 }

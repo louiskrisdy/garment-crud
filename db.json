@@ -46,8 +46,8 @@
   "login": [
     {
       "id": "dummyid1",
-      "username": "dummy1",
-      "password": "dummy1passw"
+      "username": "dummy@dummy.com",
+      "password": "password"
     }
   ]
 }
