@@ -28,10 +28,10 @@
 
                 <!-- Conditional for id input error details -->
                 @if (!data && (itemForm.controls['id'].dirty || itemForm.controls['id'].touched) && itemForm.controls['id'].invalid && itemForm.controls['id'].errors?.['uniqueId']) {
-                    <mat-error class="error-detail">Item code has been taken (Must be unique)</mat-error>
+                    <mat-error class="error-detail">{{ 'invalid item code' | translate }}</mat-error>
                 }
                 @else if(!data && (itemForm.controls['id'].dirty || itemForm.controls['id'].touched) && itemForm.controls['id'].invalid && itemForm.controls['id'].errors?.['required']) {
-                    <mat-error class="error-detail">This field cannot be empty</mat-error>
+                    <mat-error class="error-detail">{{ 'empty field' | translate }}</mat-error>
                 }
 
             </div>

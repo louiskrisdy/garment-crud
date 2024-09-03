@@ -11,6 +11,7 @@
     "Confirm delete text": "Apakah anda yakin ingin menghapus barang dengan id:",
     "paginator label": "Jumlah barang per halaman:",
     "empty field": "Input tidak boleh kosong",
+    "invalid item code": "Kode barang tidak boleh sama (harus unik)",
     "invalid username": "Username tidak valid",
     "invalid length password": "Tidak valid (min. 8 karakter)",
     "invalid length itemName": "Tidak valid (min. 5 karakter)",
