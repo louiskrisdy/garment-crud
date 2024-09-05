@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit{
     }
 
     ngOnInit() {
-      console.log(localStorage.getItem('resetPasswordToken'));
       if(localStorage.getItem('resetPasswordToken')) {
         this.authService.removeToken();
       }

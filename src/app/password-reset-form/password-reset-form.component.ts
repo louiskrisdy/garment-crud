@@ -47,13 +47,14 @@ export class PasswordResetFormComponent {
   onSubmit() {
     if(this.passwForm.valid) {
       // this.validate();
+      this.passwForm.removeControl('confPassword');
       this.loginService.updatePassword(this.data.controls['id'].value, this.passwForm.value).subscribe({
         next: (res: any) => {
           this.openSuccess();
           setTimeout(() => {
             this.authService.removeToken();
             this.router.navigate(['/']);
-          },1200)
+          },1000)
           this.dialogRef.close(true);
         },
         error: (err: any) => {
