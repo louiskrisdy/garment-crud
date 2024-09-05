@@ -51,7 +51,7 @@
 
         <div class="act d-flex flex-column">
             <div class="forgot-password row mt-3 text-end">
-                <a routerLink="/password-reset">{{ 'Forgot Password' | translate }}</a>
+                <a (click)="resetPasswordToken()" routerLink="/password-reset">{{ 'Forgot Password' | translate }}</a>
             </div>
     
             <!-- Login button -->

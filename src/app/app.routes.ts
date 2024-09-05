@@ -9,6 +9,6 @@ export const routes: Routes = [
     {path:'', component: LoginComponent, pathMatch: 'full'},
     {path: 'home', component: HomeComponent, canActivate: [authGuard]},
     {path: 'login', redirectTo:'/'},
-    {path: 'password-reset', component: PasswordResetComponent},
+    {path: 'password-reset', component: PasswordResetComponent, canActivate: [authGuard]},
     {path: '**', component: PageNotFoundComponent}
 ];

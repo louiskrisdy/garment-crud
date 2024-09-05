@@ -46,4 +46,16 @@ export class AuthService {
     })
   }
 
+  setToken() {
+    localStorage.setItem('resetPasswordToken', 'true');
+  }
+
+  tokenIsSet() {
+    return localStorage.getItem('resetPasswordToken') !== null;
+  }
+
+  removeToken() {
+    localStorage.removeItem('resetPasswordToken');
+  }
+
 }

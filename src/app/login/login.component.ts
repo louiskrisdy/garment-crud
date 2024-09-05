@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -25,7 +25,7 @@ import { NgClass } from '@angular/common';
 })
 
 
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   loginForm: FormGroup;
 
@@ -43,12 +43,23 @@ export class LoginComponent {
       });
     }
 
+    ngOnInit() {
+      console.log(localStorage.getItem('resetPasswordToken'));
+      if(localStorage.getItem('resetPasswordToken')) {
+        this.authService.removeToken();
+      }
+    }
+
     changeLanguage(event: Event) {
       let locale = (event.target as HTMLInputElement).value;
       this.translateService.use(locale);
     }
 
    
+    resetPasswordToken() {
+      this.authService.setToken();
+    }
+
     onSubmit() {
 
       if(this.loginForm.valid) {

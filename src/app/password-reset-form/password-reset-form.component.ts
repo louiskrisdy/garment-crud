@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-password-reset-form',
@@ -32,6 +33,7 @@ export class PasswordResetFormComponent {
     private toast: NgToastService,
     private router: Router,
     private translateService: TranslateService,
+    private authService: AuthService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ){
     this.passwForm = this.formBuilder.group({
@@ -49,6 +51,7 @@ export class PasswordResetFormComponent {
         next: (res: any) => {
           this.openSuccess();
           setTimeout(() => {
+            this.authService.removeToken();
             this.router.navigate(['/']);
           },1200)
           this.dialogRef.close(true);
