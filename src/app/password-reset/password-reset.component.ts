@@ -73,17 +73,6 @@ export class PasswordResetComponent {
           this.openUserNotFound();
         }
       }, 50);
-      // console.log(id);
-
-      // dialogRef.afterClosed().subscribe({
-      //   next: (res) => {
-      //     if(res) {
-
-      //     }
-      //   }
-
-      // })
-
     }
   }
 

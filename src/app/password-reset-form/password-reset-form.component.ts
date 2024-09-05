@@ -40,24 +40,7 @@ export class PasswordResetFormComponent {
       password: ['', [Validators.required, Validators.minLength(8)]],
       confPassword: ['', [Validators.required, Validators.minLength(8)]]
     });
-    // this.confPasswForm = this.formBuilder.group({
-    //   password: ['', [Validators.required, Validators.minLength(8)]]
-    // });
   }
-
-  // valid = false;
-  // validate() {
-  
-  //   if(this.passwForm.controls['password'].value === this.passwForm.controls['confPassword'].value) {
-  //     console.log(this.passwForm.controls['password'].value);
-  //     console.log(this.passwForm.controls['confPassword'].value);
-  //     this.valid = true;
-  //   }
-  //   else {
-  //     this.valid = false;
-  //   }
-  //   console.log(this.valid);
-  // }
 
   onSubmit() {
     if(this.passwForm.valid) {
