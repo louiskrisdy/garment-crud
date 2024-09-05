@@ -6,9 +6,9 @@
     </div>
     
     <!-- Form -->
-    <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="itemForm" (ngSubmit)="onSubmit()" style="width: 100%;">
     
-        <div mat-dialog-content class="content">
+        <div mat-dialog-content class="content" style="width: 100%;">
 
             <!-- Item Code -->
             <div class="row">
@@ -23,16 +23,15 @@
                     @else {
                         <input matInput type="text" placeholder="i.e CL001" formControlName="id">
                     }
-
+                    
+                    <!-- Conditional for id input error details -->
+                    @if (!data && (itemForm.controls['id'].dirty || itemForm.controls['id'].touched) && itemForm.controls['id'].invalid && itemForm.controls['id'].errors?.['uniqueId']) {
+                        <mat-error class="error-detail" style="width: 100%;">{{ 'invalid item code' | translate }}</mat-error>
+                    }
+                    @else if(!data && (itemForm.controls['id'].dirty || itemForm.controls['id'].touched) && itemForm.controls['id'].invalid && itemForm.controls['id'].errors?.['required']) {
+                        <mat-error class="error-detail">{{ 'empty field' | translate }}</mat-error>
+                    }
                 </mat-form-field>
-
-                <!-- Conditional for id input error details -->
-                @if (!data && (itemForm.controls['id'].dirty || itemForm.controls['id'].touched) && itemForm.controls['id'].invalid && itemForm.controls['id'].errors?.['uniqueId']) {
-                    <mat-error class="error-detail">{{ 'invalid item code' | translate }}</mat-error>
-                }
-                @else if(!data && (itemForm.controls['id'].dirty || itemForm.controls['id'].touched) && itemForm.controls['id'].invalid && itemForm.controls['id'].errors?.['required']) {
-                    <mat-error class="error-detail">{{ 'empty field' | translate }}</mat-error>
-                }
 
             </div>
     
@@ -42,12 +41,12 @@
                 <mat-form-field appearance="outline">
                     <mat-label>{{ 'Item Name' | translate }}</mat-label>
                     <input matInput type="text" placeholder="i.e Blue Jeans" formControlName="itemName" required>
+                    <!-- Conditional for item name input error details -->
+                    @if (itemForm.controls['itemName'].invalid && (itemForm.controls['itemName'].dirty || itemForm.controls['itemName'].touched)) {
+                        <mat-error class="error-detail">{{ getErrorMessage(1) }}</mat-error>
+                    }
                 </mat-form-field>
 
-                <!-- Conditional for item name input error details -->
-                @if (itemForm.controls['itemName'].invalid && (itemForm.controls['itemName'].dirty || itemForm.controls['itemName'].touched)) {
-                    <mat-error class="error-detail">{{ getErrorMessage(1) }}</mat-error>
-                }
 
             </div>
     
@@ -61,27 +60,27 @@
                             <mat-option [value]="val">{{ val }}</mat-option>
                         }
                     </mat-select>
+                    <!-- Conditional for category input error details -->
+                    @if (itemForm.controls['category'].invalid && (itemForm.controls['category'].dirty || itemForm.controls['category'].touched)) {
+                        <mat-error class="error-detail">{{ getErrorMessage(2) }}</mat-error>
+                    }
                 </mat-form-field>
 
-                <!-- Conditional for category input error details -->
-                @if (itemForm.controls['category'].invalid && (itemForm.controls['category'].dirty || itemForm.controls['category'].touched)) {
-                    <mat-error class="error-detail">{{ getErrorMessage(2) }}</mat-error>
-                }
 
             </div>
     
             <!-- Form field for inputting number of stock -->
-            <div class="row">
+            <div class="row" style="margin-bottom: 0px !important;">
 
                 <mat-form-field appearance="outline">
                     <mat-label>{{ 'Stock' | translate }}</mat-label>
                     <input matInput type="text" placeholder="i.e 123" formControlName="stockNumber">
+                    <!-- Conditional for stock number input error details -->
+                    @if (itemForm.controls['stockNumber'].invalid && (itemForm.controls['stockNumber'].dirty || itemForm.controls['stockNumber'].touched)) {
+                        <mat-error class="error-detail">{{ getErrorMessage(3) }}</mat-error>
+                    }
                 </mat-form-field>
 
-                <!-- Conditional for stock number input error details -->
-                @if (itemForm.controls['stockNumber'].invalid && (itemForm.controls['stockNumber'].dirty || itemForm.controls['stockNumber'].touched)) {
-                    <mat-error class="error-detail">{{ getErrorMessage(3) }}</mat-error>
-                }
 
             </div>
     
@@ -91,7 +90,7 @@
         <div mat-dialog-actions class="action-btns">
 
             <!-- Update/Save button -->
-            <button style="margin: 10px;" mat-raised-button color="accent" type="submit">{{data ? 'Update': 'Save'}}</button>
+            <button [disabled]="!itemForm.valid" style="margin: 10px;" mat-raised-button color="accent" type="submit">{{data ? 'Update': 'Save'}}</button>
 
             <!-- Cancel button -->
             <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false">Cancel</button>

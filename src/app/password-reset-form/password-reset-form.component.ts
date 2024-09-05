@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-password-reset-form',
@@ -19,6 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class PasswordResetFormComponent {
 
+  hide = true;
+  hide1 = true;
   passwForm: FormGroup;
   // confPasswForm: FormGroup;
 
@@ -28,29 +31,43 @@ export class PasswordResetFormComponent {
     private loginService: LoginService,
     private toast: NgToastService,
     private router: Router,
+    private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ){
     this.passwForm = this.formBuilder.group({
       id: [data.controls['id'].value, Validators.required],
       username: [data.controls['username'].value, Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confPassword: ['', [Validators.required, Validators.minLength(8)]]
     });
     // this.confPasswForm = this.formBuilder.group({
     //   password: ['', [Validators.required, Validators.minLength(8)]]
     // });
   }
 
-  hide = true;
+  // valid = false;
+  // validate() {
+  
+  //   if(this.passwForm.controls['password'].value === this.passwForm.controls['confPassword'].value) {
+  //     console.log(this.passwForm.controls['password'].value);
+  //     console.log(this.passwForm.controls['confPassword'].value);
+  //     this.valid = true;
+  //   }
+  //   else {
+  //     this.valid = false;
+  //   }
+  //   console.log(this.valid);
+  // }
 
   onSubmit() {
-    console.log(this.data.id);
     if(this.passwForm.valid) {
+      // this.validate();
       this.loginService.updatePassword(this.data.controls['id'].value, this.passwForm.value).subscribe({
         next: (res: any) => {
           this.openSuccess();
           setTimeout(() => {
             this.router.navigate(['/']);
-          },1000)
+          },1200)
           this.dialogRef.close(true);
         },
         error: (err: any) => {
@@ -61,8 +78,14 @@ export class PasswordResetFormComponent {
     }
   }
 
+  getErrorMessage() {
+    return this.passwForm.controls['password'].errors?.['required'] ? this.translateService.instant('empty field')
+    : this.passwForm.controls['password'].errors?.['minlength'] ? this.translateService.instant('invalid length password')
+    : '';
+  }
+
   openSuccess() {
-    this.toast.success('Password has been reset successfully', 'Password Reset Success', 2000);
+    this.toast.success('Password has been reset successfully', 'Password Reset Success', 3000);
   }
 
   openError() {

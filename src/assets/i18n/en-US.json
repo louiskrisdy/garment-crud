@@ -16,5 +16,6 @@
     "invalid length password": "Invalid (min. length: 8)",
     "invalid length itemName": "Invalid (min. length: 5)",
     "invalid input stock": "Invalid (input number only)",
-    "Password reset": "Password Reset"
+    "Password reset": "Password Reset",
+    "Forgot Password": "Forgot Password?"
 }

@@ -23,12 +23,12 @@
             <mat-form-field>
                 <mat-label>Username</mat-label>
                 <input matInput type="text" formControlName="username" placeholder="i.e username@user.name">
+
+                <!-- Conditional for username input error details -->
+                <mat-error class="error-detail">{{ getErrorMessage(1) }}</mat-error>
+
             </mat-form-field>
 
-            <!-- Conditional for username input error details -->
-            @if (loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)) {
-                <mat-error class="error-detail">{{ getErrorMessage(1) }}</mat-error>
-            }
 
         </div>
 
@@ -39,22 +39,25 @@
                 <mat-label>Password</mat-label>
                 <input matInput type="{{ hide ? 'password' : 'text' }}" formControlName="password">
                 <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+
+                <!-- Conditional for password input error details -->
+                <mat-error class="error-detail">{{ getErrorMessage(2) }}</mat-error>
+                
             </mat-form-field>
 
-            <!-- Conditional for password input error details -->
-            @if (loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)) {
-                <mat-error class="error-detail">{{ getErrorMessage(2) }}</mat-error>
-            }
 
         </div>
 
-        <div class="forgot-password row mt-3 float-end">
-            <a routerLink="/password-reset">Forgot Password?</a>
-        </div>
 
-        <!-- Login button -->
-        <div class="login-button">
-            <button [disabled]="!loginForm.valid" class="action-btn" mat-raised-button color="accent" type="submit">{{ 'LOGIN' | translate }}</button>
+        <div class="act d-flex flex-column">
+            <div class="forgot-password row mt-3 text-end">
+                <a routerLink="/password-reset">{{ 'Forgot Password' | translate }}</a>
+            </div>
+    
+            <!-- Login button -->
+            <div class="login-button">
+                <button [disabled]="!loginForm.valid" class="action-btn" mat-raised-button color="accent" type="submit">{{ 'LOGIN' | translate }}</button>
+            </div>
         </div>
         
     </form>

@@ -16,7 +16,7 @@ export class AuthService {
     this.httpClient.get<any>(`${this.baseUrl}login`)
     .subscribe(res => {
       const user = res.find((curr: any) => {
-        return curr.username === data.username && curr.password === data.password
+        return curr.username === data.username && curr.password === data.password;
       });
 
       if(user) {
@@ -33,4 +33,17 @@ export class AuthService {
   isLoggedIn() {
     return localStorage.getItem('authUser') !== null;
   }
+
+  usernameMatched(data: any) {
+    this.httpClient.get<any>(`${this.baseUrl}login`).subscribe(res => {
+      const user = res.find((curr: any) => {
+        return curr.username === data.username;
+      });
+
+      if(user) {
+        localStorage.setItem('exist', JSON.stringify(user));
+      }
+    })
+  }
+
 }

@@ -11,12 +11,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginService } from '../login.service';
 import { PasswordResetFormComponent } from '../password-reset-form/password-reset-form.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { NgToastModule, NgToastService } from 'ng-angular-popup';
+import { AuthService } from '../auth/auth.service';
+import { MatToolbar } from '@angular/material/toolbar';
 
 
 @Component({
   selector: 'app-password-reset',
   standalone: true,
-  imports: [NgbModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule, MatIconModule, TranslateModule],
+  imports: [NgbModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule, MatIconModule, TranslateModule, NgToastModule, MatToolbar],
   templateUrl: './password-reset.component.html',
   styleUrl: './password-reset.component.css'
 })
@@ -28,7 +31,9 @@ export class PasswordResetComponent {
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private loginService: LoginService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private toast: NgToastService,
+    private authService: AuthService
   ){
     this.passwResetForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.email]]
@@ -36,13 +41,9 @@ export class PasswordResetComponent {
   }
 
   getErrorMessage() {
-
-
-
         return this.passwResetForm.controls['username'].hasError('required') ? this.translateService.instant('empty field')
         : this.passwResetForm.controls['username'].hasError('pattern') || this.passwResetForm.controls['username'].hasError('email') ? this.translateService.instant('invalid username')
         : '';
-
   }
 
 
@@ -50,20 +51,28 @@ export class PasswordResetComponent {
 
     if(this.passwResetForm.valid) {
       
-      this.loginService.getUserList().subscribe(
-        res => {
-          for(let i = 0; i < res.length; i++) {
-            if(this.passwResetForm.controls['username'].value === res[i]['username']) {
-              this.passwResetForm.addControl('id', this.formBuilder.control(res[i]['id'], Validators.required));
-              console.log(this.passwResetForm);
-              this.dialog.open(PasswordResetFormComponent, {data: this.passwResetForm});
+      this.authService.usernameMatched(this.passwResetForm.value);
 
-              break;
-
+      setTimeout(() => {
+        if(localStorage.getItem('exist') !== null) {
+          this.loginService.getUserList().subscribe(
+            res => {
+              for(let i = 0; i < res.length; i++) {
+                if(this.passwResetForm.controls['username'].value === res[i]['username']) {
+                  this.passwResetForm.addControl('id', this.formBuilder.control(res[i]['id'], Validators.required));
+                  this.dialog.open(PasswordResetFormComponent, {data: this.passwResetForm});
+                  localStorage.removeItem('exist');
+                  break;
+    
+                }
+              }
             }
-          }
+          )
         }
-      )
+        else {
+          this.openUserNotFound();
+        }
+      }, 50);
       // console.log(id);
 
       // dialogRef.afterClosed().subscribe({
@@ -76,6 +85,10 @@ export class PasswordResetComponent {
       // })
 
     }
+  }
+
+  openUserNotFound() {
+    this.toast.danger('Username not found', '', 2000);
   }
 
 }
