@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginService } from '../login.service';
@@ -24,7 +24,6 @@ export class PasswordResetFormComponent {
   hide = true;
   hide1 = true;
   passwForm: FormGroup;
-  // confPasswForm: FormGroup;
 
   constructor(
     private dialogRef: MatDialogRef<PasswordResetFormComponent>,
@@ -40,13 +39,25 @@ export class PasswordResetFormComponent {
       id: [data.controls['id'].value, Validators.required],
       username: [data.controls['username'].value, Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      confPassword: ['', [Validators.required, Validators.minLength(8)]]
-    });
+      confPassword: ['', [Validators.required, this.passwordValidate]]
+    }
+  );
+}
+
+  passwordValidate = (control: AbstractControl): {[key: string]: boolean} | any => {
+
+    const passw = this.passwForm?.get('password')?.value as string;
+    const confPassw = control.value as string;
+
+    if(passw !== confPassw) {
+
+      return {'passwMatched': true}
+    }
+    return null;
   }
 
   onSubmit() {
     if(this.passwForm.valid) {
-      // this.validate();
       this.passwForm.removeControl('confPassword');
       this.loginService.updatePassword(this.data.controls['id'].value, this.passwForm.value).subscribe({
         next: (res: any) => {
