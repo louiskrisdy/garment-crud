@@ -52,10 +52,6 @@ export class LoginComponent implements OnInit{
       catch(error: any) {
         console.log(error);
       }
-      finally {
-        //
-        console.log('finally');
-      }
     }
 
     changeLanguage(event: Event) {
