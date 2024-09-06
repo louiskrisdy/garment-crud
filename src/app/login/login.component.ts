@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit{
           else {
             this.openUserNotFound();
           }
-        },10);
+        },50);
       }
       else {
         this.openError();
