@@ -41,6 +41,12 @@
       "itemName": "Grey T-shirt",
       "category": "Clothes",
       "stockNumber": "100"
+    },
+    {
+      "id": "CL003",
+      "itemName": "Red T-shirt",
+      "category": "Clothes",
+      "stockNumber": "60"
     }
   ],
   "login": [
