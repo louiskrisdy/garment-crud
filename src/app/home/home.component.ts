@@ -47,6 +47,7 @@ export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
+    // Changing the paginator label using TranslateService
     this.paginator._intl.itemsPerPageLabel = this.translateService.instant('paginator label');
     
     return this.getItemList();
