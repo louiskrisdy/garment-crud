@@ -74,11 +74,13 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>{{ 'Stock' | translate }}</mat-label>
-                    <input matInput type="text" placeholder="i.e 123" formControlName="stockNumber">
+                    <input matInput type="number" placeholder="i.e 123" formControlName="stockNumber" [min]="minStock" [max]="maxStock">
+
                     <!-- Conditional for stock number input error details -->
                     @if (itemForm.controls['stockNumber'].invalid && (itemForm.controls['stockNumber'].dirty || itemForm.controls['stockNumber'].touched)) {
                         <mat-error class="error-detail">{{ getErrorMessage(3) }}</mat-error>
                     }
+                    
                 </mat-form-field>
 
 

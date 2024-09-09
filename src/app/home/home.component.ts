@@ -67,7 +67,6 @@ export class HomeComponent implements AfterViewInit {
 
   // For adding item(s), Executed when the specific button is clicked
   openAddEditItemDialog() {
-
     const dialogRef = this.dialog.open(ItemAddEditComponent); //  item-add-edit.component.html will be displayed
     dialogRef.afterClosed().subscribe({
       next: (val) => {
@@ -76,12 +75,10 @@ export class HomeComponent implements AfterViewInit {
         }
       }
     });
-
   }
 
   // Read the data
   getItemList() {
-
     this.itemService.getItemList().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
@@ -92,12 +89,10 @@ export class HomeComponent implements AfterViewInit {
         console.log(err);
       }
     });
-
   }
 
   // Form for edit item details. Function below will be executed when the dedicated button is clicked
   openEditForm(data: any) {
-
     const dialogRef = this.dialog.open(ItemAddEditComponent, {data});
     dialogRef.afterClosed().subscribe({
       next: (val) => {
@@ -106,12 +101,10 @@ export class HomeComponent implements AfterViewInit {
         }
       }
     });
-
   }
 
   // For deleting an item. Will be executed when a specific button is clicked.
   deleteItem(id: number) {
-
     const dialogRef = this.dialog.open(ItemDeleteComponent, {data: id});
     dialogRef.afterClosed().subscribe({
       next: (val) => {
@@ -120,7 +113,6 @@ export class HomeComponent implements AfterViewInit {
         }
       }
     });
-    
   }
 
   public logout() {
@@ -128,5 +120,4 @@ export class HomeComponent implements AfterViewInit {
     this.translateService.use('en-US');
     this.router.navigate(['login']);
   }
-
 }

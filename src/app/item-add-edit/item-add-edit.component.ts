@@ -34,6 +34,9 @@ export class ItemAddEditComponent implements OnInit{
     'Other'
   ];
  
+  minStock = 0;
+  maxStock = 500;
+
   constructor(
     private itemService: ItemService,
     private dialogRef: MatDialogRef<ItemAddEditComponent>,
@@ -120,7 +123,6 @@ export class ItemAddEditComponent implements OnInit{
   }
 
 openSuccess(con: string) {
-
   this.toast.success(this.itemForm.controls['itemName'].value+` ${con} successfully`, `${con} Successfully`, 3000);
 }
 
